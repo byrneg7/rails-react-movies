@@ -63,21 +63,21 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  Shoulda::Matchers.configure do |config|
-    config.integrate do |with|
+  Shoulda::Matchers.configure do |matcher_config|
+    matcher_config.integrate do |with|
       with.test_framework :rspec
       with.library :rails
     end
   end
 
   # Add matchers configuration before this block
-  RSpec.configure do |config|
+  RSpec.configure do |rspec_config|
     # Bunch of code here....
   end
 
-  RSpec.configure do |config|
+  RSpec.configure do |rspec_config|
     # ...rest of the block
     # Factory Bot
-    config.include FactoryBot::Syntax::Methods
+    rspec_config.include FactoryBot::Syntax::Methods
   end
 end

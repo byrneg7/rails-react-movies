@@ -10,14 +10,13 @@ class Api::V1::MoviesController < Api::V1::ApiController
   end
 
   def show
-    render json: @movie
+    render json: MovieSerializer.new(@movie).serializable_hash.to_json
   end
 
   def create
     @movie = Movie.new(movie_params)
-
     if @movie.save
-      render json: @movie, status: :created
+      render json: MovieSerializer.new(@movie).serializable_hash.to_json, status: :created
     else
       render json: @movie.errors, status: :unprocessable_entity
     end

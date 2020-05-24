@@ -43,46 +43,5 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
     end
   end
-  #
-  # describe 'PUT #update' do
-  #   context 'with valid params' do
-  #     let(:new_attributes) do
-  #       {
-  #           name: 'Dublin Music Club',
-  #       }
-  #     end
-  #
-  #     it 'updates the requested Chatroom' do
-  #       chatroom = create(:chatroom)
-  #       put :update, params: {id: chatroom.to_param, chatroom: new_attributes}
-  #       chatroom.reload
-  #       expect(chatroom.attributes).to include('name' => 'Dublin Music Club')
-  #     end
-  #
-  #     it 'returns a 200 status code' do
-  #       chatroom = create(:chatroom)
-  #
-  #       put :update, params: {id: chatroom.to_param, chatroom: valid_attributes}
-  #       expect(response).to have_http_status(:ok)
-  #     end
-  #   end
-  #
-  #   context 'with invalid params' do
-  #     it 'returns a 422 status code' do
-  #       chatroom = create(:chatroom)
-  #
-  #       put :update, params: {id: chatroom.to_param, chatroom: invalid_attributes}
-  #       expect(response).to have_http_status(:unprocessable_entity)
-  #     end
-  #   end
-  # end
-  #
-  # describe 'DELETE #destroy' do
-  #   it 'destroys the requested Chatroom' do
-  #     chatroom = create(:chatroom)
-  #     expect do
-  #       delete :destroy, params: {id: chatroom.to_param}
-  #     end.to change(Chatroom, :count).by(-1)
-  #   end
-  # end
+
 end

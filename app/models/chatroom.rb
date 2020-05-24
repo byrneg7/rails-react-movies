@@ -1,4 +1,4 @@
 
 class Chatroom < ApplicationRecord
-  validates :name, :members, presence: true
+  validates :name, presence: true
 end

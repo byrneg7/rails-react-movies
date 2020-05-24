@@ -6,7 +6,7 @@ class Api::V1::MoviesController < Api::V1::ApiController
   def index
     @movies = Movie.all
 
-    render json: @movies
+    render json: MovieSerializer.new(@movies).serializable_hash.to_json
   end
 
   def show
@@ -24,7 +24,7 @@ class Api::V1::MoviesController < Api::V1::ApiController
 
   def update
     if @movie.update(movie_params)
-      render json: @movie
+      render json: MovieSerializer.new(@movie).serializable_hash.to_json, status: :ok
     else
       render json: @movie.errors, status: :unprocessable_entity
     end

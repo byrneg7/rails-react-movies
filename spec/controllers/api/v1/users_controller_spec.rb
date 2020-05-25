@@ -5,7 +5,6 @@ require 'rails_helper'
 RSpec.describe Api::V1::UsersController, type: :controller do
   let(:valid_attributes) do
     {
-        username: 'valid_username',
         email: 'valid_email@example.com',
         password: 'test_password',
         password_confirmation: 'test_password',
@@ -13,7 +12,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   end
 
   let(:invalid_attributes) do
-    {username: nil}
+    {email: nil}
   end
 
   describe 'POST #create' do

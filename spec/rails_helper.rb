@@ -70,14 +70,16 @@ RSpec.configure do |config|
     end
   end
 
-  # Add matchers configuration before this block
-  RSpec.configure do |rspec_config|
-    # Bunch of code here....
-  end
 
   RSpec.configure do |rspec_config|
     # ...rest of the block
     # Factory Bot
     rspec_config.include FactoryBot::Syntax::Methods
+
+    require 'database_cleaner'
+    rspec_config.before(:suite) do
+      DatabaseCleaner.clean_with :truncation, {:only => %w{users} }
+    end
+
   end
 end

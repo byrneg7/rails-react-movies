@@ -7,44 +7,29 @@ class Api::V1::SessionsController < Api::V1::ApiController
 
     if @user && @user.authenticate(session_params[:password])
       login!
-      render json: {
-          logged_in: true,
-          user: @user
-      }
+      render json: UserSerializer.new(@user).serializable_hash.to_json
     else
-      render json: {
-          status: 401,
-          errors: ['no such user', 'verify credentials and try again or signup']
-      }
+      render json: {errors: 'invalid credentials'}, status: :unauthorized
     end
   end
 
   def is_logged_in?
     if logged_in? && current_user
-      render json: {
-          logged_in: true,
-          user: current_user
-      }
+      render json: UserSerializer.new(current_user).serializable_hash.to_json
     else
-      render json: {
-          logged_in: false,
-          message: 'no such user'
-      }
+      render json: {errors: 'invalid credentials'}, status: :unauthorized
     end
   end
 
   def destroy
     logout!
-    render json: {
-        status: 200,
-        logged_out: true
-    }
+    render json: {logged_out: true}, status: :ok
   end
 
   private
 
   def session_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:email, :password)
   end
 
   def logged_in?

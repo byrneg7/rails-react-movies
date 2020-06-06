@@ -1,35 +1,18 @@
 # frozen_string_literal: true
 
 require 'database_cleaner/active_record'
-DatabaseCleaner.strategy = :truncation, { only: %w[movies chatrooms] }
+DatabaseCleaner.strategy = :truncation, { only: %w[users] }
 DatabaseCleaner.clean
 
-def generate_email_array
-  email_arr = []
-  5.times do
-    email_arr << Faker::Internet.email
-  end
-  email_arr
-end
+p "\nSeeding db... \n"
 
-puts "\nSeeding db... \n"
-
-puts "\t Seeding Movies..."
-10.times do
-  Movie.create(
-    title: Faker::Book.title,
-    plot: Faker::Lorem.paragraph,
-    release_date: Faker::Date.birthday(min_age: 18, max_age: 65)
-  )
-end
-
-puts "\t Seeding Chatrooms..."
+puts "\t Creating Users..."
 10.times do
   Chatroom.create(
-      name: Faker::Book.title,
+      name: Faker::Name.first_name + Faker::Name::last_name,
       description: Faker::Lorem.paragraph,
       members:  generate_email_array
   )
 end
 
-puts "Seeding finished... \n \n"
+p "Seeding finished... \n \n"
